@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personalized Health Assistant</title>
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f9;
+  color: #333;
+}
+
+header {
+  background-color: #6200ea;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  background-color: #3700b3;
+  padding: 0.5rem;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 1rem;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+.container {
+  width: 100%;
+  padding: 1rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  max-width: 600px;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Carousel styles */
+.carousel {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  margin: auto;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.carousel-images {
+  display: flex;
+  transition: transform 1s ease-in-out;
+}
+
+.carousel-images img {
+  width: 100%;
+  max-height: 300px; /* Reduced size */
+  flex-shrink: 0;
+  object-fit: cover;
+}
+
+.carousel-controls {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+}
+
+.carousel-button {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 4px;
+}
+#home.container {
+  max-width: 100%; /* Allow full width on home page */
+  padding: 0; /* Optional: Adjust padding if necessary */
+}
+
+.carousel-button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Styles for Login, Register, and Plans */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+input:focus {
+  border-color: #6200ea;
+  outline: none;
+}
+
+button {
+  width: 100%;
+  padding: 1rem;
+  background-color: #6200ea;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #3700b3;
+}
+
+h2 {
+  margin-bottom: 1rem;
+}
+
+#plans-container {
+  margin-top: 1rem;
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.plan {
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  padding: 1rem;
+}
+
+.plan p {
+  margin: 0.5rem 0;
+}
+
+.plan strong {
+  color: #6200ea;
+}
+
+#plans-container button {
+  margin-top: 1rem;
+  width: auto;
+  padding: 0.5rem 1rem;
+  background-color: #6200ea;
+  color: white;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+#plans-container button:hover {
+  background-color: #3700b3;
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Personalized Health Assistant</h1>
+  </header>
+  <nav>
+    <a href="#" onclick="showPage('home')">Home</a>
+    <a href="#" onclick="showPage('login')">Login</a>
+    <a href="#" onclick="showPage('register')">Register</a>
+    <a href="#" onclick="showPage('plans')">Plans</a>
+  </nav>
+
+  <div id="home" class="container" style="padding: 0;">
+    <h2 style="padding: 1rem;">Welcome to Personalized Health Assistant</h2>
+    <!-- Carousel for Sliding Images -->
+    <div class="carousel">
+      <div class="carousel-images">
+        <img src="WhatsApp Image 2025-01-24 at 4.16.30 PM.jpeg" alt="Slide 1">
+        <img src="WhatsApp Image 2025-01-24 at 4.16.31 PM (1).jpeg" alt="Slide 2">
+        <img src="WhatsApp Image 2025-01-24 at 4.16.31 PM.jpeg" alt="Slide 3">
+      </div>
+    </div>
+    <p style="padding: 1rem;">Your journey to better health starts here. Navigate through the menu to explore!</p>
+  </div>
+
+  <script>
+    let currentSlide = 0;
+
+    function showPage(pageId) {
+      const pages = document.querySelectorAll('.container');
+      pages.forEach(page => page.classList.add('hidden'));
+      document.getElementById(pageId).classList.remove('hidden');
+    }
+
+    function autoSlide() {
+      const carouselImages = document.querySelector('.carousel-images');
+      const slides = document.querySelectorAll('.carousel-images img');
+      currentSlide = (currentSlide + 1) % slides.length;
+      carouselImages.style.transform = `translateX(-${currentSlide * 100}%)`;
+    }
+
+    // Start auto-slide
+    setInterval(autoSlide, 3000); // Slide every 3 seconds
+
+  </script>
+<div id="login" class="container hidden">
+  <h2>Login</h2>
+  <div class="form-group">
+    <label for="login-Name">Name:</label>
+    <input type="text" id="login-Name" placeholder="Enter your name">
+  </div>
+  <div class="form-group">
+    <label for="login-email">Email:</label>
+    <input type="email" id="login-email" placeholder="Enter your email">
+  </div>
+  <div class="form-group">
+    <label for="login-password">Password:</label>
+    <input type="password" id="login-password" placeholder="Enter your password">
+  </div>
+  <button onclick="loginUser()">Login</button>
+</div>
+
+<div id="register" class="container hidden">
+  <h2>Register User</h2>
+  <div class="form-group">
+    <label for="name">Name:</label>
+    <input type="text" id="name" placeholder="Enter your name">
+  </div>
+  <div class="form-group">
+    <label for="age">Age:</label>
+    <input type="number" id="age" placeholder="Enter your age">
+  </div>
+  <div class="form-group">
+    <label for="weight">Weight (kg):</label>
+    <input type="number" id="weight" placeholder="Enter your weight">
+  </div>
+  <div class="form-group">
+    <label for="height">Height (cm):</label>
+    <input type="number" id="height" placeholder="Enter your height">
+  </div>
+  <div class="form-group">
+    <label for="activity">Activity Level:</label>
+    <input type="text" id="activity" placeholder="e.g., Low, Moderate, High">
+  </div>
+  <div class="form-group">
+    <label for="history">Medical History:</label>
+    <input type="text" id="history" placeholder="Enter medical history">
+    <input type="file">
+  </div>
+  <button onclick="registerUser()">Register</button>
+</div>
+
+<div id="plans" class="container hidden">
+  <h2>Generated Plans</h2>
+  <button onclick="generatePlan()">Generate Plan</button>
+  <div id="plans-container"></div>
+</div>
+
+<script>
+  function showPage(pageId) {
+    const pages = document.querySelectorAll('.container');
+    pages.forEach(page => page.classList.add('hidden'));
+    document.getElementById(pageId).classList.remove('hidden');
+  }
+
+  function loginUser() {
+    alert('Login functionality is under construction.');
+  }
+
+  const plansContainer = document.getElementById('plans-container');
+
+  function registerUser() {
+    alert('User registered successfully!');
+  }
+
+  function generatePlan() {
+    const mockPlan = {
+      workout: '30 minutes of jogging, 3 times a week',
+      diet: '2000 calorie balanced diet',
+      wellness: '10 minutes of meditation daily',
+      date: new Date().toLocaleDateString()
+    };
+
+    const planDiv = document.createElement('div');
+    planDiv.classList.add('plan');
+    planDiv.innerHTML = 
+      <p><strong>Date:</strong> ${mockPlan.date}</p>
+      <p><strong>Workout:</strong> ${mockPlan.workout}</p>
+      <p><strong>Diet:</strong> ${mockPlan.diet}</p>
+      <p><strong>Wellness:</strong> ${mockPlan.wellness}</p>
+    ;
+    plansContainer.appendChild(planDiv);
+  }
+</script>
+</body>
+</html> 
